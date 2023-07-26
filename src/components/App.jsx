@@ -9,8 +9,21 @@ export default function App() {
     const [friends, setFriends] = useState(initialFriends);
     const [selectedFriend, setSelectedFriend] = useState(null);
     function handleSelectedFriend(friend) {
-        setSelectedFriend((selected)=>selected?.id===friend.id?null:friend);
-        setDisplayForm(false)
+        setSelectedFriend((selected) =>
+            selected?.id === friend.id ? null : friend
+        );
+        setDisplayForm(false);
+    }
+    function handleSplitBill(value) {
+        console.log(value);
+        setFriends((friends) =>
+            friends.map((friend) =>
+                friend.id === selectedFriend.id
+                    ? { ...friend, balance: friend.balance + value }
+                    : friend
+            )
+        );
+        setSelectedFriend(null)
     }
     return (
         <div className="app">
@@ -36,7 +49,10 @@ export default function App() {
                 </Button>
             </div>
             {selectedFriend && (
-                <FormSplitBill selectedFriend={selectedFriend} />
+                <FormSplitBill
+                    selectedFriend={selectedFriend}
+                    onSplitBill={handleSplitBill}
+                />
             )}
         </div>
     );

@@ -5,7 +5,6 @@ export function Friend({ friend, selectedFriend, onSelectedFriend }) {
     if (selectedFriend){
         isSelected=selectedFriend.id===friend.id
     }
-    console.log(isSelected);
     return (
         <li className={isSelected?"selected":""}>
             <img src={friend.image} alt="friend" />
