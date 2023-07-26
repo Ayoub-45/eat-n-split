@@ -1,8 +1,13 @@
 import React from "react";
 import { Button } from "./Button";
-export function Friend({ friend }) {
+export function Friend({ friend, selectedFriend, onSelectedFriend }) {
+    let isSelected=false
+    if (selectedFriend){
+        isSelected=selectedFriend.id===friend.id
+    }
+    console.log(isSelected);
     return (
-        <li>
+        <li className={isSelected?"selected":""}>
             <img src={friend.image} alt="friend" />
             <h3>{friend.name}</h3>
             {friend.balance < 0 ? (
@@ -17,7 +22,7 @@ export function Friend({ friend }) {
                     You owe {friend.name} {friend.balance} €
                 </p>
             )}
-            <Button>Select</Button>
-         </li>
+            <Button onClick={() => onSelectedFriend(friend)}>{isSelected?"Close":"Select"}</Button>
+        </li>
     );
 }
