@@ -1,3 +1,5 @@
+import React from "react";
+import { Button } from "./Button";
 export function Friend({ friend }) {
     return (
         <li>
@@ -15,7 +17,7 @@ export function Friend({ friend }) {
                     You owe {friend.name} {friend.balance} €
                 </p>
             )}
-            <button className="button">Select</button>
-        </li>
+            <Button>Select</Button>
+         </li>
     );
 }
